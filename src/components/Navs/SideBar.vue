@@ -1,10 +1,19 @@
 <template>
-  <div id="nav">
-    <router-link :to="{name: 'principal'}">Home</router-link> |
-    <router-link :to="{name: 'estudiantes'}">est</router-link> |
-    <router-link :to="{name: 'docentes'}">sdsa</router-link> |
-  </div>
+ 
+  <ul class="nav flex-column">
+    <li class="nav-item">
+        <router-link class="nav-link active" :to="{name: 'principal'}">Inicio</router-link>
+    </li>
+    <li class="nav-item">
+        <router-link class="nav-link" :to="{name: 'estudiantes'}">Estudiantes</router-link>
+    </li>
+    <li class="nav-item">
+        <router-link class="nav-link" :to="{name: 'docentes'}">Docentes</router-link>
+    </li>
+
+  </ul>
 </template>
+
 
 <script>
 

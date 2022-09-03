@@ -1,8 +1,14 @@
 <template>
-  <div id="nav">
-    <SideBar></SideBar>
-  </div>
-  <router-view/>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <SideBar></SideBar>
+        </div>
+        <div class="col">
+          <router-view/>
+        </div>
+      </div>
+    </div>
 </template>
 
 <script>
