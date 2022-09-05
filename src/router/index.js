@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import Principal from '../views/Principal.vue'
 import Docentes from '../views/Docentes.vue'
 import Estudiantes from '../views/Estudiantes.vue'
+import Secciones from '../views/Secciones.vue'
 
 const routes = [
   {
@@ -12,7 +13,8 @@ const routes = [
     children:[
       {path: '/',component: Principal,name: 'principal',},
       {path: 'estudiantes',component: Estudiantes,name: 'estudiantes',},
-      {path: 'docentes',component: Docentes,name: 'docentes',}
+      {path: 'docentes',component: Docentes,name: 'docentes',},
+      {path: 'secciones',component: Secciones,name: 'secciones',},
     ]
   },
   {

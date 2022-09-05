@@ -1,10 +1,10 @@
 <template>
   <div class="container my-4">
-    <h1 class="text-center">Docentes</h1>
+    <h1 class="text-center">Estudiantes</h1>
     <div class="row">
             <!-- Button trigger modal -->
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Registrar docentes
+        Registrar Alumno
       </button>
 
       <!-- Modal -->
@@ -12,7 +12,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Registro de docente</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Registro de seccion</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -21,24 +21,20 @@
                   <strong>Algo salio!</strong> {{ alert }}.
                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
+
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Nombres</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" v-model="dataDocentes.nombre">
-                </div>
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Apellidos</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" v-model="dataDocentes.apellido">
-                </div>
-                <div class="mb-3">
-                  <label for="exampleInputEmail2" class="form-label">DNI</label>
-                  <input type="number" class="form-control" id="exampleInputEmail2"  v-model="dataDocentes.dni">
+                  <label for="exampleInputEmail1" class="form-label">Curso de la seccion</label>
+                  <select v-model="dataSecciones.idCurso" class="form-select">
+                      <option value="null">Seleccione un curso </option>
+                      <option v-for="item in courses" :key="item.index" :value="item.id" >{{ item.nombre }}</option>
+                    </select>
                 </div>
 
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">Nivel</label>
-                  <select v-model="dataDocentes.idNivel" class="form-select">
-                      <option value="null">Seleccione el nivel educativo </option>
-                      <option v-for="item in niveles" :key="item.index" :value="item.id" >{{ item.nombre }}</option>
+                  <label for="exampleInputEmail1" class="form-label">Docente a asignar</label>
+                  <select v-model="dataSecciones.idDocente" class="form-select">
+                      <option value="null">Seleccione un docente </option>
+                      <option v-for="item in docentes" :key="item.index" :value="item.id" >{{ item.nombre }}</option>
                     </select>
                 </div>
                 
@@ -46,7 +42,8 @@
               </div>
               
               <div v-if="isRegister">
-                <h3>El docente fue registrado con éxito</h3>
+                <h3>La seccion fue registrada con éxito.</h3>
+                <p>Registada como seccion {{ dataRegistrada.codigo }} y asignada al profesor {{ profesor(dataRegistrada.idDocente) }}</p>
               </div>
 
             </div>
@@ -59,51 +56,47 @@
       
 
     <div class="row">
-      <h3>Todos los docentes</h3>
+      <h3>Todas las secciones</h3>
       <table class="table">
         <thead>
           <tr>
             <th scope="col">Codigo</th>
-            <th scope="col">Nombres</th>
-            <th scope="col">Apellidos</th>
-            <th scope="col">DNI</th>
-            <th scope="col">Correo</th>
+            <th scope="col">Curso</th>
             <th scope="col">Nivel</th>
+            <th scope="col">Docente</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in todosDocentes" :key="item.index">
+          <tr v-for="item in todosSecciones" :key="item.index">
             <th scope="row">{{ item.codigo }}</th>
-            <td>{{ item.nombre }}</td>
-            <td>{{ item.apellido }}</td>
-            <td>{{ item.dni}}</td>
-            <td>{{ item.correo }}</td>
+            <td>{{ item.curso.nombre }}</td>
             <td>{{ item.nivel }}</td>
+            <td>{{ item.idDocente == null ? 'Sin asignar' : item.codigoDocente }}</td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
 </template>
-
 <script>
 
 export default {
-  name: 'DocentesComponent',
+  name: 'SeccionesComponent',
   data(){
     return{
       isRegister:false,
       error:false,
       alert:'',
       niveles:null,
-      todosDocentes:null,
+      todosSecciones:null,
       dataRegister:null,
-      dataDocentes:{
-        nombre:null,
-        apellido:null,
-        dni:null,
-        idNivel:null
+      dataSecciones:{
+        idCurso:null,
+        idDocente:null
       },
+      courses:null,
+      docentes:null,
+      dataRegistrada:null
     }
   },
   methods:{
@@ -112,13 +105,27 @@ export default {
         this.niveles = res.data.data
       })
     },
-    async traerDocentes(){
-      await this.axios.get('teachers').then((res)=>{
-        this.todosDocentes = res.data.data
+    async traerSecciones(){
+      await this.axios.get('sections').then((res)=>{
+        this.todosSecciones = res.data.data
       })
+
+      await this.axios.get('courses').then((res)=>{
+        this.courses = res.data.data
+      })
+
+      await this.axios.get('teachers').then((res)=>{
+        this.docentes = res.data.data
+      })
+
+      await this.todosSecciones.map( async (item)=>{
+          const curo = await this.courses.find((curs) => curs.id === item.idCurso)
+          item.curso = curo
+      })
+
     },
     async enviar(){
-      let valores = Object.values(this.dataDocentes)
+      let valores = Object.values(this.dataSecciones)
       let countNull = null;
       for(let i=0; i<valores.length; i++){
         if(valores[i] == null){
@@ -129,9 +136,10 @@ export default {
       if(countNull > 0){
         alert('Llene todos los datos')
       }else{
-        await this.axios.post('teachers/register', this.dataDocentes ).then((res)=>{
+        await this.axios.post('sections/register', this.dataSecciones ).then((res)=>{
+            this.dataRegistrada = res.data.data
           if(res.data.data){
-            this.traerDocentes();
+            this.traerSecciones();
             this.isRegister=true;
           }
 
@@ -141,11 +149,15 @@ export default {
           }
         })
       }
+    },
+    profesor(id){
+        const doce = this.docentes.find((docente)=> docente.id === id)
+        return doce.nombre + ' ' + doce.apellido + ' con código '+doce.codigo
     }
   },
   created(){
     this.traerNiveles();
-    this.traerDocentes();
+    this.traerSecciones();
   }
 }
 </script>
