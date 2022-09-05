@@ -27,6 +27,7 @@ export default {
         {name:'Inicio',path:'principal',icon:'fas fa-home'},
         {name:'Estudiantes',path:'estudiantes',icon:'fas fa-user-graduate'},
         {name:'Docentes',path:'docentes',icon:'fas fa-chalkboard-teacher'},
+        {name:'Secciones',path:'secciones',icon:'fas fa-school'}
       ]
     }
   }

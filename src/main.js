@@ -8,6 +8,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 
 axios.defaults.baseURL = 'https://intranetapi.herokuapp.com/api'
+// axios.defaults.baseURL = 'http://localhost:3000/api'
 
 import 'bootstrap/dist/js/bootstrap.js'
 
