@@ -12,6 +12,7 @@ const routes = [
     component: Home,
     children:[
       {path: '/',component: Principal,name: 'principal',},
+      {path: 'principal',component: Principal,name: 'principal',},
       {path: 'estudiantes',component: Estudiantes,name: 'estudiantes',},
       {path: 'docentes',component: Docentes,name: 'docentes',},
       {path: 'secciones',component: Secciones,name: 'secciones',},
