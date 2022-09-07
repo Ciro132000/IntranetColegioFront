@@ -1,10 +1,10 @@
 <template>
   <div class="container my-4">
-    <h1 class="text-center">Estudiantes</h1>
+    <h1 class="text-center">Secciones</h1>
     <div class="row">
             <!-- Button trigger modal -->
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Registrar Alumno
+        Registrar sección 
       </button>
 
       <!-- Modal -->
