@@ -6,7 +6,9 @@
         </router-link>
     </div>
 
-    <SidebarLink v-for="(item) in itemSideBar" :key="item.index" :to="item.path" :icon="item.icon" class="d-flex flex-column text-center">{{item.name}}</SidebarLink>
+    <SidebarLink v-for="(item) in itemSideBar" :key="item.index" :to="item.path" :icon="item.icon" class="d-flex flex-column text-center" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="right" data-bs-content="Right popover">
+        {{item.name}}
+    </SidebarLink>
 
     <span
       class="collapse-icon"
