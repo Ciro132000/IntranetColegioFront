@@ -31,15 +31,53 @@
       return { collapsed, toggleSidebar, sidebarWidth }
     },
     data(){
-        return{
-            itemSideBar: [
-                {name:'Inicio',path:'principal',icon:'fas fa-home'},
-                {name:'Estudiantes',path:'estudiantes',icon:'fas fa-user-graduate'},
-                {name:'Docentes',path:'docentes',icon:'fas fa-chalkboard-teacher'},
-                {name:'Secciones',path:'secciones',icon:'fas fa-school'}
-            ]
-        }
+    return{
+      items:{
+        admin:[
+          {name:'Inicio',path:'principal',icon:'fas fa-home'},
+          {name:'Estudiantes',path:'estudiantes',icon:'fas fa-user-graduate'},
+          {name:'Docentes',path:'docentes',icon:'fas fa-chalkboard-teacher'},
+          {name:'Secciones',path:'secciones',icon:'fas fa-school'}
+        ],
+        docente:[
+          {name:'Tablero',path:'principal',icon:'fas fa-tachometer-alt'},
+          {name:'Secciones',path:'',icon:'fas fa-chalkboard-teacher'},
+          {name:'Alumnos',path:'',icon:'fas fa-user-graduate'},
+          {name:'Horario',path:'',icon:'fas fa-calendar-alt'},
+          {name:'Mensajes',path:'',icon:'fas fa-envelope-open-text'}
+        ],
+        estudiantes:[
+          {name:'Tablero',path:'',icon:'fas fa-tachometer-alt'},
+          {name:'Cursos',path:'',icon:'fas fa-book'},
+          {name:'Compañeros',path:'',icon:'fas fa-users'},
+          {name:'Horario',path:'',icon:'fas fa-calendar-alt'},
+          {name:'Mensajes',path:'',icon:'fas fa-envelope-open-text'}
+        ]
+      },
+      itemSideBar:[]
     }
+  },
+  methods:{
+    getItemsSide(){
+      let rol_user = localStorage.getItem('rol_user');
+
+      if(rol_user==1){
+        this.itemSideBar = this.items.admin
+      }
+
+      if(rol_user==2){
+        this.itemSideBar = this.items.docente
+      }
+
+      if(rol_user==3){
+        this.itemSideBar = this.items.estudiantes
+      }
+      
+    }
+  },
+  created(){
+    this.getItemsSide()
+  }
   }
 
 </script>
