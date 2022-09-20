@@ -5,6 +5,7 @@
           <img class="logo" src="../../../assets/logo.png" alt="">
         </router-link>
     </div>
+    {{ dataUser }}
 
     <SidebarLink v-for="(item) in itemSideBar" :key="item.index" :to="item.path" :icon="item.icon" class="d-flex flex-column text-center" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-placement="right" data-bs-content="Right popover">
         {{item.name}}
@@ -22,6 +23,7 @@
 
 
 <script>
+  import { mapState } from "vuex";
   import SidebarLink from './SidebarLink'
   import { collapsed, toggleSidebar, sidebarWidth } from './state'
   export default {
@@ -77,7 +79,12 @@
   },
   created(){
     this.getItemsSide()
-  }
+  },
+  computed: {
+    ...mapState({
+      dataUser: state => state.dataUsuario
+    })
+  },
   }
 
 </script>
