@@ -40,11 +40,8 @@ export default {
         ...mapActions(['fetchUser']),
 
         async singin(){
-            const res = await this.axios.post("auth/login", this.form).catch( (error) => {
-                console.log(error.response.status)
-            });
-
-            this.fetchUser(res.data)
+            await this.axios.post("auth/login", this.form).then((res)=>{
+            this.fetchUser(res.data.data)
 
             let authToken = res.data.data.token;
             let rol = res.data.data.user.idRol
@@ -54,6 +51,11 @@ export default {
 
             
             window.location.reload(true);
+            }).catch( (error) => {
+                console.log(error.response.status)
+            });
+
+            
         }
     }
 }
