@@ -24,7 +24,7 @@
 </template>
 
 <script>
-
+import { mapActions } from 'vuex'
 
 export default {
     name:"Login",
@@ -37,12 +37,14 @@ export default {
         };
     },
     methods:{
-
+        ...mapActions(['fetchUser']),
 
         async singin(){
             const res = await this.axios.post("auth/login", this.form).catch( (error) => {
                 console.log(error.response.status)
             });
+
+            this.fetchUser(res.data)
 
             let authToken = res.data.data.token;
             let rol = res.data.data.user.idRol

@@ -46,10 +46,8 @@ router.beforeEach((to, from, next) => {
   //   next('/preferences');
   else if ((!autenticado && token)) {
     next('/');
-
   }
   else {
-
     next()
   }
 })

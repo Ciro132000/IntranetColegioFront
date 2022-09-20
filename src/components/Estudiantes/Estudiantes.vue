@@ -144,7 +144,7 @@ export default {
           countNull += 1;
         }
       }
-      console.log(countNull)
+      console.log(this.dataEstudiante)
       if(countNull > 0){
         alert('Llene todos los datos')
       }else{
@@ -158,6 +158,8 @@ export default {
             this.error = true
             this.alert = res.data.msg
           }
+
+          console.log(res.data)
         })
       }
     }
