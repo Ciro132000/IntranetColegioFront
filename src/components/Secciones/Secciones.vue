@@ -48,7 +48,7 @@
                       <div  class="form-text">Puede elegirlo luego</div>
                   </div>
                   
-                  <button type="submit" class="btn btn-primary" >Enviar</button>
+                  <button type="submit" class="btn btn-primary">Enviar</button>
                 </form>
       
               </div>
@@ -67,38 +67,58 @@
     <div class="row my-5">
 
     <div class="row">
-      <h3>Todas las secciones</h3>
-      <table class="table ">
-        <thead>
-          <tr>
-            <th scope="col">Codigo</th>
-            <th scope="col">Curso</th>
-            <th scope="col">Nivel</th>
-            <th scope="col">Docente</th>
-            <th scope="col">Horario</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(item,i) in todosSecciones" :key="i">
-            <th scope="row">{{ item.codigo }}</th>
-            <td>{{ item.curso.nombre }}</td>
-            <td>{{ item.nivel }}</td>
-            <td>
-              <div v-if="item.idDocente == null" class="d-flex">
-                  <select class="form-select form-select-md select-table" aria-label="Default select example" v-model="selectDocente[i]">
-                    <option v-for="(item,index) in docentes.filter(i => i.idNivel === item.idNivel)" :key="index" :value="item.id">{{ item.nombre }}</option>
-                  </select>
-                  <button type="button" class="btn btn-info" @click="asignarSeccion(item.id,i)">Registrar</button>
-              </div>
-              <div v-else>
-                {{ item.codigoDocente }}
-              </div>
-            </td>
-            <td><button type="button" class="btn btn-success">Asignar</button></td>
-          </tr>
-        </tbody>
-      </table>
-
+      <h3 class="text-center">Todas las secciones</h3>
+      <div class="table-container">
+        <table class="table ">
+          <thead>
+            <tr>
+              <th scope="col">Codigo</th>
+              <th scope="col">Curso</th>
+              <th scope="col">Nivel</th>
+              <th scope="col">Docente</th>
+              <th scope="col">Horario</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(item,i) in todosSecciones" :key="i">
+              <th scope="row">{{ item.codigo }}</th>
+              <td>{{ item.curso.nombre }}</td>
+              <td>{{ item.nivel }}</td>
+              <td>
+                <div v-if="item.idDocente == null" class="d-flex">
+                    <select class="form-select form-select-md select-table" aria-label="Default select example" v-model="selectDocente[i]">
+                      <option v-for="(item,index) in docentes.filter(i => i.idNivel === item.idNivel)" :key="index" :value="item.id">{{ item.nombre }}</option>
+                    </select>
+                    <button type="button" class="btn btn-info" @click="asignarSeccion(item.id,i)">Registrar</button>
+                </div>
+                <div v-else>
+                  {{ item.codigoDocente }}
+                </div>
+              </td>
+              <td>
+                <div v-if="item.horarios.length > 0" class="d-flex flex-column">
+                  <ul>
+                    <li v-for="h in item.horarios" :key="h.index" >
+                      {{ dias(h.dia) }} : {{ h.horaInicio }} - {{ h.horaFinal }}
+                    </li>
+                  </ul>
+                  <router-link class="editar" :to="{name:'asignarHorario', params:{idAula:item.idAula ,idSeccion:item.id } }"> 
+                    Editar <i class="fas fa-edit"></i>
+                  </router-link>
+                </div>
+                <div v-else>
+                    <router-link :to="{name:'asignarHorario', params:{idAula:item.idAula ,idSeccion:item.id } }"> 
+                      <button type="button" class="btn btn-success">
+                        Asignar
+                      </button>
+                    </router-link>
+                  
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>
@@ -128,6 +148,21 @@ export default {
     }
   },
   methods:{
+
+    dias(dia){
+      switch (dia) {
+        case 1:
+          return 'Lunes'
+        case 2:
+          return 'Martes'
+        case 3:
+          return 'Miercoles'
+        case 4:
+          return 'Jueves'
+        case 5:
+          return 'Viernes'
+      }
+    },
 
     checkForm: function(e){
       if(this.courseSelect && this.dataSecciones.idAula){
@@ -167,6 +202,14 @@ export default {
       await this.axios.get('sections').then((res)=>{
         this.todosSecciones = res.data.data
       })
+
+      await this.todosSecciones.map(async (seccion, index) =>{
+        await this.axios.get(`sections/schedule?idSeccion=${seccion.id}}`).then((res)=>{
+          this.todosSecciones[index].horarios = res.data.data
+        }
+        )
+      })
+
     },
     async traerData(){
       await this.axios.get('courses').then((res)=>{
@@ -216,5 +259,23 @@ export default {
 <style scoped>
 .select-table{
   width: 30%;
+}
+a{
+  text-decoration: none;
+  color: white;
+}
+.editar{
+  color: black;
+  background: rgba(231, 231, 231, 0.472);
+  width: 100px;
+  text-align: center;
+  border-radius: 10px;
+}
+.editar i{
+  margin-left: 0.5rem;
+}
+.table-container{
+  width: 90%;
+  margin: auto;
 }
 </style>

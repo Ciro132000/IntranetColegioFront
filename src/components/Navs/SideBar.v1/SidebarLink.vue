@@ -16,7 +16,7 @@ export default {
 </script>
 
 <template>
-  <router-link :to="to" class="link" :class="{ active: $route.name === to, collap: collapsed }"> 
+  <router-link :to="{name:to}" class="link" :class="{ active: $route.name === to, collap: collapsed }"> 
     <i class="icon" :class="icon" />
     <transition name="fade">
       <span v-if="!collapsed">

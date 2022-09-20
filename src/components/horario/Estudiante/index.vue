@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-      <h1>Asginación de horario para la sección: 1</h1>
+      <h1 class="text-center">Horario del alumno</h1>
       <hr>
-      <h5>Hoararios disponibles</h5>
+      
     <table class="cal">
 		<thead>
 			<tr>
@@ -17,20 +17,18 @@
 		<tbody>
 			<tr v-for="item in horarioItem" :key="item.index">
 				<td class="horas">{{ item.inicio }} a {{ item.fin }}</td>
-				<td v-for="i in item.dias" :key="i.index" :class="{'notAvailable':i.curso}">
-                    <div v-if="i.curso"> No disponible</div>
-                    <div v-else>
-                        Disponible
-                        <input type="checkbox" v-model="op" :value="{dia:i,horaInicio:item.inicio,horaFinal:item.fin}">
+				<td v-for="i in item.dias" :key="i.index">
+                    <div v-if="i.curso"> 
+                        {{ i.curso }} <br/>
+                        {{ i.seccion }}
                     </div>
-                    <!-- <div >{{ comprobar(i,item.inicio,item.fin) }}</div> -->
+                    <div v-else>
+                        ----  
+                    </div>
                 </td>
 			</tr>
 		</tbody>
 	</table>
-    <div class="d-grid gap-2 col-6 mx-auto mt-5">
-        <button class="btn btn-primary" type="button" @click="resgistrar()" :disabled="!op.length>0">Registrar horario</button>
-    </div>
   </div>
 </template>
 
@@ -41,8 +39,6 @@ export default {
     data(){   
         return{
             dataAula:[],
-            noDisponible:[{dia: 1, inicio: "8:00:00", fin: "8:45:00"}],
-            op:[],
             horarioItem:[
                 {
                     inicio:'08:00:00',

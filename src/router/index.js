@@ -5,6 +5,7 @@ import Docentes from '../views/Docentes.vue'
 import Estudiantes from '../views/Estudiantes.vue'
 import Secciones from '../views/Secciones.vue'
 import Login from '../views/auth/Login.vue'
+import Horario from '../views/Horario.vue'
 
 const routes = [
   {
@@ -17,6 +18,8 @@ const routes = [
       {path: 'estudiantes',component: Estudiantes,name: 'estudiantes'},
       {path: 'docentes',component: Docentes,name: 'docentes'},
       {path: 'secciones',component: Secciones,name: 'secciones'},
+      {path: 'horario/:idAula', component: Horario, name: 'horario'},
+      {path: 'horario/:idAula/:idSeccion', component: Horario, name: 'asignarHorario'}
     ]
   },
   {
