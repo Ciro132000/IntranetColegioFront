@@ -3,7 +3,7 @@
     <EsquemaHorario/>
   </div>
   <div v-if="rol_user==2">
-    dff
+    <DocenteHorario />
   </div>
   <div v-if="rol_user==3">
     <EstudianteHorario/>
@@ -13,6 +13,7 @@
 <script>
 import EsquemaHorario from './esquema/horario.vue'
 import EstudianteHorario from './Estudiante'
+import DocenteHorario from './docente'
 
 export default {
   name: 'Horario',
@@ -23,7 +24,8 @@ export default {
   },
   components:{
       EsquemaHorario,
-      EstudianteHorario
+      EstudianteHorario,
+      DocenteHorario
   }
 }
 </script>

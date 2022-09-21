@@ -1,8 +1,10 @@
 <template>
   <div class="container">
-      <h1>Asginación de horario para la sección: 1</h1>
+      <h1 class="text-center">Asignación de horario para la sección: {{ dataSeccion.codigo }}</h1>
+      <h5>Docente: {{ dataSeccion.nombreDocente }} - {{ dataSeccion.codigoDocente }}</h5>
+      <h5>Nivel: {{ dataSeccion.nivel }} Curso:{{ dataSeccion.curso }}</h5>
       <hr>
-      <h5>Hoararios disponibles</h5>
+      <h5>Horarios disponibles</h5>
     <table class="cal">
 		<thead>
 			<tr>
@@ -74,8 +76,8 @@ export default {
                     fin:'12:45:00',
                     dias:[1,2,3,4,5]
                 }
-            ]
-
+            ],
+            dataSeccion:[]
         }
     },
     methods:{
@@ -97,20 +99,12 @@ export default {
                 this.dataAula=res.data.data
                 this.comprobar()
             })
+
+            await this.axios.get(`sections/search?idSection=${this.$route.params.idSeccion}`).then((res)=>{
+                this.dataSeccion = res.data.data[0]
+            })
         },
-        // comprobar(dia,inicio,fin){
-        //     this.dataAula.map(object =>{ 
-        //         if(object.dia == dia && object.horaInicio == inicio && object.horaFinal == fin){
-        //             console.log('si')
-        //             return 'true';
-        //         }else{
-        //             console.log('no')
-        //             return 'false'
-        //         }
-        //     });
-        // }
         comprobar(){
-            this.horarioItem[0].dias[2] = 'hola'
             this.dataAula.map((aula)=>{
                 this.horarioItem.map((horario,index)=>{
                     if( horario.inicio === aula.horaInicio && horario.fin === aula.horaFinal){
@@ -118,15 +112,6 @@ export default {
                     }
                 })
             })
-
-            // this.horarioItem.map(async(horario)=>{
-            //     const inicio = horario.inicio
-
-            //     const filter = await this.dataAula.filter(h => h.horaInicio.toString() === inicio )
-            //     console.log(inicio == this.dataAula[0].horaInicio)
-            // })
-
-            // this.horarioItem[0].dias[2] = 'hola'
         }
     },
     created(){

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-      <h1 class="text-center">Horario del alumno</h1>
+      <h1 class="text-center">Horario del docente</h1>
       <hr>
       
     <table class="cal">
@@ -35,7 +35,7 @@
 <script>
 
 export default {
-    name: 'PrincipalComponent',
+    name: 'horarioDocente',
     data(){   
         return{
             dataAula:[],
@@ -76,12 +76,14 @@ export default {
     },
     methods:{
         async horarios(){
-            await this.axios.get(`classroom/schedule?idAula=${localStorage.getItem('idAula')}`).then((res)=>{
+            await this.axios.get(`teachers/schedule?idDocente=${localStorage.getItem('id_usuario')}`).then((res)=>{
                 this.dataAula=res.data.data
                 this.comprobar()
             })
         },
+
         comprobar(){
+            this.horarioItem[0].dias[2] = 'hola'
             this.dataAula.map((aula)=>{
                 this.horarioItem.map((horario,index)=>{
                     if( horario.inicio === aula.horaInicio && horario.fin === aula.horaFinal){

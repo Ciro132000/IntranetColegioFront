@@ -18,6 +18,7 @@ const routes = [
       {path: 'estudiantes',component: Estudiantes,name: 'estudiantes'},
       {path: 'docentes',component: Docentes,name: 'docentes'},
       {path: 'secciones',component: Secciones,name: 'secciones'},
+      {path: 'horario', component: Horario, name: 'horarioClases' },
       {path: 'horario/:idAula', component: Horario, name: 'horario'},
       {path: 'horario/:idAula/:idSeccion', component: Horario, name: 'asignarHorario'}
     ]
