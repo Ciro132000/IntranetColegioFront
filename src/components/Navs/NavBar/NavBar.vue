@@ -18,8 +18,7 @@ export default {
   name: 'NavBarComponent',
   methods:{
     singup(){
-      localStorage.removeItem("access_token");
-      localStorage.removeItem("rol_user");
+      localStorage.clear();
       this.$router.push({ name: 'Login' });
     }
   }
