@@ -1,19 +1,15 @@
 <template>
-  <div v-if="rol_user==1">
-    <Admin />
-  </div>
-
-  <div class="cotainer-fluid px-5" v-else>
+  <div class="cotainer-fluid px-5">
     <div class="row mt-5">
       <div class="col-md-3">
         <Menu/>
       </div>
       <div class="col-md-9">
         <div v-if="rol_user==2">
-        <Docente />
+          <DocenteForo />
         </div>
         <div v-if="rol_user==3">
-          <Estudiante />
+          <EstudianteForo/>
         </div>
       </div>
     </div>
@@ -22,22 +18,20 @@
 </template>
 
 <script>
-import Admin from './admin'
-import Estudiante from './Estudiantes'
-import Docente from './Docentes'
-import Menu from './menu'
+import EstudianteForo from './Estudiante'
+import DocenteForo from './Docente'
+import Menu from '../Secciones/menu'
 
 export default {
-  name: 'SeccionesComponent',
+  name: 'Foros',
   data(){
     return{
       rol_user:localStorage.getItem('rol_user')
     }
   },
   components:{
-      Admin,
-      Estudiante,
-      Docente,
+      EstudianteForo,
+      DocenteForo,
       Menu
   }
 }

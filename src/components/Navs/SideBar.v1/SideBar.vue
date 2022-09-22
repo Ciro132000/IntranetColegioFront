@@ -43,14 +43,14 @@
         ],
         docente:[
           {name:'Tablero',path:'principal',icon:'fas fa-tachometer-alt'},
-          {name:'Secciones',path:'',icon:'fas fa-chalkboard-teacher'},
+          {name:'Secciones',path:'cursos',icon:'fas fa-chalkboard-teacher'},
           {name:'Alumnos',path:'',icon:'fas fa-user-graduate'},
           {name:'Horario',path:'horarioClases',icon:'fas fa-calendar-alt'},
           {name:'Mensajes',path:'',icon:'fas fa-envelope-open-text'}
         ],
         estudiantes:[
-          {name:'Tablero',path:'',icon:'fas fa-tachometer-alt'},
-          {name:'Cursos',path:'',icon:'fas fa-book'},
+          {name:'Tablero',path:'principal',icon:'fas fa-tachometer-alt'},
+          {name:'Cursos',path:'cursos',icon:'fas fa-book'},
           {name:'Compañeros',path:'',icon:'fas fa-users'},
           {name:'Horario',path:'horarioClases',icon:'fas fa-calendar-alt'},
           {name:'Mensajes',path:'',icon:'fas fa-envelope-open-text'}

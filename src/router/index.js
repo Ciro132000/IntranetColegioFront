@@ -6,6 +6,9 @@ import Estudiantes from '../views/Estudiantes.vue'
 import Secciones from '../views/Secciones.vue'
 import Login from '../views/auth/Login.vue'
 import Horario from '../views/Horario.vue'
+import Curso from '../views/Cursos.vue'
+import Foros from '../components/Foros'
+import ForosRespuesta from '../components/Foros/respuesta.vue'
 
 const routes = [
   {
@@ -18,9 +21,16 @@ const routes = [
       {path: 'estudiantes',component: Estudiantes,name: 'estudiantes'},
       {path: 'docentes',component: Docentes,name: 'docentes'},
       {path: 'secciones',component: Secciones,name: 'secciones'},
+      
+      {path: 'secciones/:idSeccion',component: Secciones,name: 'seccion',children:[]},
+      {path: 'secciones/:idSeccion/foros',component: Foros,name: 'foros'},
+      {path: 'secciones/:idSeccion/foros/:idForo',component: ForosRespuesta,name: 'fororespuesta'},
+  
+
       {path: 'horario', component: Horario, name: 'horarioClases' },
       {path: 'horario/:idAula', component: Horario, name: 'horario'},
-      {path: 'horario/:idAula/:idSeccion', component: Horario, name: 'asignarHorario'}
+      {path: 'horario/:idAula/:idSeccion', component: Horario, name: 'asignarHorario'},
+      {path: 'cursos', component: Curso, name: 'cursos' },
     ]
   },
   {
