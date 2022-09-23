@@ -8,6 +8,7 @@ import Login from '../views/auth/Login.vue'
 import Horario from '../views/Horario.vue'
 import Curso from '../views/Cursos.vue'
 import Foros from '../components/Foros'
+import Evaluaciones from '../components/Evaluaciones'
 import ForosRespuesta from '../components/Foros/respuesta.vue'
 
 const routes = [
@@ -26,6 +27,7 @@ const routes = [
       {path: 'secciones/:idSeccion/foros',component: Foros,name: 'foros'},
       {path: 'secciones/:idSeccion/foros/:idForo',component: ForosRespuesta,name: 'fororespuesta'},
   
+      {path: 'secciones/:idSeccion/evaluaciones',component: Evaluaciones,name: 'evaluaciones'},
 
       {path: 'horario', component: Horario, name: 'horarioClases' },
       {path: 'horario/:idAula', component: Horario, name: 'horario'},

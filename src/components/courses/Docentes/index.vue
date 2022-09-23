@@ -1,7 +1,6 @@
 <template>
   <div class="container">
       <h1 class="text-center">Cursos a cargo</h1>
-      {{ dataUser }}
       <div class="list-group">
         <a v-for="data in dataUser" :key="data.index" href="#" class="list-group-item list-group-item-action" aria-current="true">
             <div class="d-flex w-100 justify-content-between">
