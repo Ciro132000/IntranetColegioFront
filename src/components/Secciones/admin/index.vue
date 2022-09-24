@@ -2,10 +2,22 @@
   <div class="container my-4">
     <h1 class="text-center">Secciones</h1>
     <div class="row">
-            <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Registrar sección 
-      </button>
+      <!-- Button trigger modal -->
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Registrar sección 
+          </button>
+
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalAula">
+            Registrar nueva aula
+          </button>
+
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ModalCurso">
+            Registrar nuevo curso
+          </button>
+
+      </div>
+
 
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -61,7 +73,115 @@
             </div>
             </div>
           </div>
-        </div>
+      </div>
+
+      <div class="modal fade" id="ModalAula" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Registrar nueva aula</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+              <div v-if="mensajeAlerta" class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Upss!</strong> {{ mensajeAlerta }}.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+
+              <div v-if="isRegisterAula" class="alert alert-info alert-dismissible fade show" role="alert">
+                <strong>Perfecto!</strong> registro guardado correctamente.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+
+
+              <label for="exampleInputEmail1" class="form-label">Nivel educativo del aula</label>
+              <select v-model="registrarAula.idNivel" class="form-select">
+                <option value="null">Seleccione el nivel educativo </option>
+                <option v-for="item in niveles" :key="item.index" :value="item.id" >{{ item.nombre }}</option>
+              </select>
+
+              <div v-if="registrarAula.idNivel != null">
+                <div class="mb-3" >
+                  <label for="exampleInputEmail3" class="form-label">Grado</label>
+                  <div v-if="registrarAula.idNivel == 1">
+                    <select v-model="registrarAula.grado" class="form-select">
+                      <option value="null">Seleccione el grado </option>
+                      <option v-for="item in [1,2,3,4,5,6]" :key="item.index" :value="item" >{{ item }}</option>
+                    </select>
+                  </div>
+                  <div v-else>
+                    <select v-model="registrarAula.grado" class="form-select">
+                      <option value="null">Seleccione el grado </option>
+                      <option v-for="item in [1,2,3,4,5]" :key="item.index" :value="item" >{{ item }}</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="mb-3" >
+                  <label for="exampleInputEmail3" class="form-label">Sección</label>
+                  <div>
+                    <select v-model="registrarAula.seccion" class="form-select">
+                      <option value="null">Seleccione la sección </option>
+                      <option v-for="item in ['A','B','C','D','E','F']" :key="item.index" :value="item" >{{ item }}</option>
+                    </select>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <button type="submit" class="btn btn-primary" @click="enviarAula()" >Enviar</button>
+            </div>
+            </div>
+          </div>
+      </div>
+
+      <div class="modal fade" id="ModalCurso" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Registro de seccion</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div v-if="mensajeAlerta" class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Upss!</strong> {{ mensajeAlerta }}.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+
+              <div v-if="isRegisterCurso" class="alert alert-info alert-dismissible fade show" role="alert">
+                <strong>Perfecto!</strong> registro guardado correctamente.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>  
+
+              <div class="mb-3" >
+                <label class="form-label">Nombre del curso</label>
+                <input v-model="registrarCurso.nombre" class="form-control" type="text">
+              </div>
+
+              <div class="mb-3" >
+                <label class="form-label">Horas semanales del curso</label>
+                <input v-model="registrarCurso.horas" class="form-control" type="number">
+              </div>
+
+              <div class="mb-3" >
+                 <label for="exampleInputEmail1" class="form-label">Nivel educativo del curso</label>
+                  <select v-model="registrarCurso.idNivel" class="form-select">
+                    <option value="null">Seleccione el nivel educativo </option>
+                    <option v-for="item in niveles" :key="item.index" :value="item.id" >{{ item.nombre }}</option>
+                  </select>
+              </div>
+              
+              
+              <button type="submit" class="btn btn-primary" @click="enviarCurso()" >Enviar</button>
+
+            </div>
+            </div>
+          </div>
+      </div>
+
+
       </div>
     </div>
     <div class="row my-5">
@@ -144,11 +264,24 @@ export default {
       docentes:null,
       dataRegistrada:null,
       aulas:null,
-      selectDocente:[]
+      selectDocente:[],
+      registrarAula:{
+        grado:null,
+        seccion:null,
+        idNivel:null
+      },
+      registrarCurso:{
+        nombre:null,
+        horas:null,
+        idNivel:null
+      },
+      mensajeAlerta:null,
+      isRegisterAula:false,
+      isRegisterCurso:false,
     }
   },
   methods:{
-
+ 
     dias(dia){
       switch (dia) {
         case 1:
@@ -198,6 +331,7 @@ export default {
         this.niveles = res.data.data
       })
     },
+
     async traerSecciones(){
       await this.axios.get('sections').then((res)=>{
         this.todosSecciones = res.data.data
@@ -211,6 +345,7 @@ export default {
       })
 
     },
+
     async traerData(){
       await this.axios.get('courses').then((res)=>{
         this.courses = res.data.data
@@ -229,6 +364,7 @@ export default {
         this.aulas = res.data.data
       })
     },
+
     async enviar(){
         await this.axios.post('sections/register', this.dataSecciones ).then((res)=>{
             this.dataRegistrada = res.data.data
@@ -243,9 +379,63 @@ export default {
           }
         })
     },
+
     profesor(id){
         const doce = this.docentes.find((docente)=> docente.id === id)
         return doce.nombre + ' ' + doce.apellido + ' con código '+doce.codigo
+    },
+
+    async enviarAula(){
+      if(
+        this.registrarAula.grado != null &&
+        this.registrarAula.seccion != null &&
+        this.registrarAula.idNivel != null
+      ){
+        await this.axios.post('classroom/create', this.registrarAula ).then((res)=>{
+          if(res.data.data){ 
+            this.registrarAula.idNivel=null
+            this.registrarAula.grado=null 
+            this.registrarAula.seccion=null
+            this.isRegisterAula=true;
+          }
+
+          if(res.data.msg){
+            this.mensajeAlerta = res.data.msg
+          }
+        })
+      }else{
+        this.mensajeAlerta = "Llene los campos requeridos"
+        setTimeout(() => {
+          this.mensajeAlerta=null
+        }, "3000")
+      }
+    },
+
+    async enviarCurso(){
+      if(
+        this.registrarCurso.nombre != null &&
+        this.registrarCurso.horas != null &&
+        this.registrarCurso.idNivel != null
+      ){
+        await this.axios.post('courses/create', this.registrarCurso ).then((res)=>{
+          if(res.data.data){
+            this.registrarCurso.nombre = null 
+            this.registrarCurso.horas = null 
+            this.registrarCurso.idNivel = null
+            this.isRegisterCurso=true;
+            console.log(res.data.data)
+          }
+
+          if(res.data.msg){
+            this.mensajeAlerta = res.data.msg
+          }
+        })
+      }else{
+        this.mensajeAlerta = "Llene los campos requeridos"
+        setTimeout(() => {
+          this.mensajeAlerta=null
+        }, "3000")
+      }
     }
   },
   created(){
