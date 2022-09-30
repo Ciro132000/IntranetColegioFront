@@ -25,7 +25,7 @@
                 </div>
                 <div class="card-body">
                   <h5 class="card-title">Decripcion: {{ examen.descripcion }}</h5>
-                  <p v-if="rol_user==1" class="card-text">Disponible : El {{ formatear(examen.fechaInicio)}}, hasta el {{ formatear(examen.fechaFin) }} </p>
+                  <p v-if="rol_user==3" class="card-text">Disponible : El {{ formatear(examen.fechaInicio)}}, hasta el {{ formatear(examen.fechaFin) }} </p>
                   <div v-if="rol_user==2">
                     Disponible del
                     <a class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -47,6 +47,11 @@
                     </div>
 
                   </div>
+
+                  <router-link class="btn btn-info" :to="{name:'respuestaEvaluacion', params:{idSeccion:$route.params.idSeccion,idEvaluacion:examen.id,tipoEvaluacion:'examen'}  }"> 
+                      {{ rol_user == 3 ? 'Realizar evaluación' : 'Revisar resultados' }}
+                  </router-link> 
+                  
                 </div>
             </div>
             <h3>Tareas</h3>
@@ -58,7 +63,7 @@
                   </div>
                   <div class="card-body">
                   <h5 class="card-title">Decripcion: {{ tarea.descripcion }}</h5>
-                  <p v-if="rol_user==1" class="card-text">Disponible : El {{ formatear(tarea.fechaInicio)}}, hasta el {{ formatear(tarea.fechaFin) }} </p>
+                  <p v-if="rol_user==3" class="card-text">Disponible : El {{ formatear(tarea.fechaInicio)}}, hasta el {{ formatear(tarea.fechaFin) }} </p>
 
                   <div v-if="rol_user==2">
                     Disponible del
@@ -80,6 +85,10 @@
                       <button class="btn btn-success my-2" @click="modificarFechaFin(tarea.id, tarea.fechaInicio)">Modificar</button>
                     </div>
                   </div>
+
+                  <router-link class="btn btn-info" :to="{name:'respuestaEvaluacion', params:{idSeccion:$route.params.idSeccion,idEvaluacion:tarea.id,tipoEvaluacion:'tarea'}  }"> 
+                      {{ rol_user == 3 ? 'Realizar evaluación' : 'Revisar resultados' }}
+                  </router-link>  
 
                 </div>
             </div>

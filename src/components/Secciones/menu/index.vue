@@ -21,8 +21,11 @@ export default {
   data(){
     return{
       itemsMenu:[
+        {name:'Contenido',path:'seccion'},
         {name:'Foros',path:'foros'},
-        {name:'Evaluaciones',path:'evaluaciones'}
+        {name:'Evaluaciones',path:'evaluaciones'},
+        {name:'Calificaciones',path:'notas'},
+        {name:'Anuncios',path:'evaluaciones'}
       ]
     }
   },

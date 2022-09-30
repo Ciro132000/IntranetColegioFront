@@ -4,8 +4,13 @@
           <div class="col-6 d-flex">
               <img class="img-login" src="../../assets/login/login2.jpg" alt="">
           </div>
+
           <div class="col-6 bg-login d-flex flex-column">
             <img class="logo-web " src="../../assets/logo.png" alt="">
+            <div v-if="alert" class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Credenciales incorrectas!</strong> intentelo denuevo.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
             <form class="form-login" @submit.prevent="singin">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Código institucional</label>
@@ -33,7 +38,8 @@ export default {
         form: {
             usuario: null,
             contraseña: null,
-        }
+        },
+        alert:false
         };
     },
     methods:{
@@ -41,6 +47,7 @@ export default {
 
         async singin(){
             await this.axios.post("auth/login", this.form).then((res)=>{
+
             this.fetchUser(res.data.data)
 
             let authToken = res.data.data.token;
@@ -57,6 +64,10 @@ export default {
             
             window.location.reload(true);
             }).catch( (error) => {
+                this.alert = true
+                setTimeout(() => {
+                    this.alert = false
+                }, "3000")
                 console.log(error.response.status)
             });
 
@@ -75,6 +86,13 @@ export default {
     max-width:80%;
     display: block;
     margin:auto;
+}
+
+.alert{
+    width: 50%;
+    margin: auto;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 
 .bg-login{

@@ -9,10 +9,7 @@
         <Menu/>
       </div>
       <div class="col-md-9">
-        <div v-if="rol_user==2">
-        <Docente />
-        </div>
-        <div v-if="rol_user==3">
+        <div>
           <Estudiante />
         </div>
       </div>
@@ -24,7 +21,7 @@
 <script>
 import Admin from './admin'
 import Estudiante from './Estudiantes'
-import Docente from './Docentes'
+
 import Menu from './menu'
 
 export default {
@@ -37,7 +34,7 @@ export default {
   components:{
       Admin,
       Estudiante,
-      Docente,
+
       Menu
   }
 }
