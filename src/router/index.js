@@ -9,7 +9,11 @@ import Horario from '../views/Horario.vue'
 import Curso from '../views/Cursos.vue'
 import Foros from '../components/Foros'
 import Evaluaciones from '../components/Evaluaciones'
+import EvaluacionesRespuesta from '../components/Evaluaciones/respuestas.vue'
 import ForosRespuesta from '../components/Foros/respuesta.vue'
+import Calificar from '../components/Evaluaciones/calificar'
+import Notas from '../components/Evaluaciones/notas'
+import Leccion from '../components/Leccion'
 
 const routes = [
   {
@@ -23,11 +27,21 @@ const routes = [
       {path: 'docentes',component: Docentes,name: 'docentes'},
       {path: 'secciones',component: Secciones,name: 'secciones'},
       
-      {path: 'secciones/:idSeccion',component: Secciones,name: 'seccion',children:[]},
+      {path: 'secciones/:idSeccion',component: Secciones,name: 'seccion'},
       {path: 'secciones/:idSeccion/foros',component: Foros,name: 'foros'},
       {path: 'secciones/:idSeccion/foros/:idForo',component: ForosRespuesta,name: 'fororespuesta'},
   
       {path: 'secciones/:idSeccion/evaluaciones',component: Evaluaciones,name: 'evaluaciones'},
+      {path: 'secciones/:idSeccion/notas',component: Notas,name: 'notas'},
+
+
+      {path: 'secciones/:idSeccion/leccion/:idLeccion',component: Leccion,name: 'leccion'},
+
+      // Responder evaluaciones - ALUMNOS
+      {path: 'secciones/:idSeccion/evaluaciones/:tipoEvaluacion/:idEvaluacion',component: EvaluacionesRespuesta,name: 'respuestaEvaluacion'},
+
+      // Calificar evaluciones - DOCENTES
+      {path: 'secciones/:idSeccion/evaluaciones/:tipoEvaluacion/:idEvaluacion/alumno/:idEstudiante',component: Calificar,name: 'revisarEvaluacion'},
 
       {path: 'horario', component: Horario, name: 'horarioClases' },
       {path: 'horario/:idAula', component: Horario, name: 'horario'},
