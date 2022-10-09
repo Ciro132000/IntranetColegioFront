@@ -25,7 +25,9 @@ export default {
         {name:'Foros',path:'foros'},
         {name:'Evaluaciones',path:'evaluaciones'},
         {name:'Calificaciones',path:'notas'},
-        {name:'Anuncios',path:'evaluaciones'}
+        {name:'Anuncios',path:'anuncios'},
+        {name:'Grupos',path:'grupos'},
+        {name:'Pendientes',path:'pendientes'}
       ]
     }
   },

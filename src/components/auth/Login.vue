@@ -56,6 +56,7 @@ export default {
             localStorage.setItem("rol_user", rol)
             localStorage.setItem("access_token", authToken);
             localStorage.setItem("id_usuario",res.data.data.dataUser.id)
+            localStorage.setItem("id_user",res.data.data.user.id)
             
             if(rol===3){
                 localStorage.setItem("idAula", res.data.data.dataUser.idAula)
