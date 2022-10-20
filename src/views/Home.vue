@@ -12,7 +12,7 @@
 
     <SideBar />
     <div :style="{ 'margin-left': sidebarWidth }">
-      <div class="container-fluid">
+      <div class="container-fluid custom">
       <NavBar/>
       <router-view />
       </div>
@@ -39,6 +39,10 @@ export default {
 </script>
 
 <style scoped>
+
+.container-fluid{
+  height: 100vh;
+}
 
 .row{
   height: 100vh;
@@ -67,5 +71,9 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+</style>
+
+<style>
 
 </style>

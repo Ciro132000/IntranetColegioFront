@@ -46,14 +46,15 @@
           {name:'Secciones',path:'cursos',icon:'fas fa-chalkboard-teacher'},
           {name:'Alumnos',path:'',icon:'fas fa-user-graduate'},
           {name:'Horario',path:'horarioClases',icon:'fas fa-calendar-alt'},
-          {name:'Mensajes',path:'',icon:'fas fa-envelope-open-text'}
+          {name:'Mensajes',path:'mensajes',icon:'fas fa-envelope-open-text'}
         ],
         estudiantes:[
           {name:'Tablero',path:'principal',icon:'fas fa-tachometer-alt'},
           {name:'Cursos',path:'cursos',icon:'fas fa-book'},
           {name:'Compañeros',path:'',icon:'fas fa-users'},
           {name:'Horario',path:'horarioClases',icon:'fas fa-calendar-alt'},
-          {name:'Mensajes',path:'',icon:'fas fa-envelope-open-text'}
+          {name:'Mensajes',path:'mensajes',icon:'fas fa-envelope-open-text'},
+          {name:'Actividades',path:'historial',icon:'fas fa-history'}
         ]
       },
       itemSideBar:[]
