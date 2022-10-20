@@ -3,7 +3,7 @@
         <ul class="list-group list-group-flush">
                 <li class="list-group-item d-flex justify-content-between" v-for="alumno in listaAlumnos" :key="alumno.index">
                     <div>
-                        <img class="img-perfil" src="../../../assets/perfil.jpg" alt="">
+                        <img class="img-perfil" :src="alumno.img" alt="">
                         <span>{{ alumno.nombre }} {{ alumno.apellido }} <strong>Cod.</strong> {{ alumno.codigo }}</span>
                     </div>
 
