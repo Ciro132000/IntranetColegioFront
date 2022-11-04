@@ -56,7 +56,14 @@ export default {
             localStorage.setItem("rol_user", rol)
             localStorage.setItem("access_token", authToken);
             localStorage.setItem("id_usuario",res.data.data.dataUser.id)
-            localStorage.setItem("id_user",res.data.data.user.id)
+            localStorage.setItem("id_user",res.data.data.user.id),
+            localStorage.setItem("nombre_user",res.data.data.dataUser.nombre)
+            localStorage.setItem("apellido_user",res.data.data.dataUser.apellido)
+            localStorage.setItem("codigo",res.data.data.dataUser.codigo)
+            localStorage.setItem("imagen",res.data.data.perfil.img)
+            localStorage.setItem("notificacion",res.data.data.perfil.isNotificacion)
+            localStorage.setItem("perfil",res.data.data.perfil.id)
+            localStorage.setItem("sesiones",res.data.data.sesiones)
             
             if(rol===3){
                 localStorage.setItem("idAula", res.data.data.dataUser.idAula)
@@ -70,9 +77,7 @@ export default {
                     this.alert = false
                 }, "3000")
                 console.log(error.response.status)
-            });
-
-            
+            });          
         }
     }
 }

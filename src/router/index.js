@@ -19,7 +19,8 @@ import Leccion from '../components/Leccion'
 import Pendientes from '../components/pendientes'
 import Anuncios from '../components/anuncios'
 import Grupos from '../components/grupos'
-
+import Asistencias from '../components/Asistencias'
+import Perfil from '../components/Perfil'
 
 const routes = [
   {
@@ -47,6 +48,8 @@ const routes = [
 
       {path: 'secciones/:idSeccion/leccion/:idLeccion',component: Leccion,name: 'leccion'},
 
+      {path: 'asistencia',component: Asistencias,name: 'asistencia'},
+
       // Responder evaluaciones - ALUMNOS
       {path: 'secciones/:idSeccion/evaluaciones/:tipoEvaluacion/:idEvaluacion',component: EvaluacionesRespuesta,name: 'respuestaEvaluacion'},
 
@@ -57,7 +60,9 @@ const routes = [
       {path: 'horario/:idAula', component: Horario, name: 'horario'},
       {path: 'horario/:idAula/:idSeccion', component: Horario, name: 'asignarHorario'},
       {path: 'cursos', component: Curso, name: 'cursos' },
-      {path: 'historial', component: Historial, name: 'historial' }
+      {path: 'historial', component: Historial, name: 'historial' },
+
+      {path: 'edit/perfil', component: Perfil, name: 'perfiluser' }
     ]
   },
   {

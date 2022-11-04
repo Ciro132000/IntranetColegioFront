@@ -1,27 +1,20 @@
-<template>
-    <!-- <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-1 ">
-          <SideBar></SideBar>
-        </div>
-        <div class="col-md-11 ">
-          <router-view/>
-        </div>
-      </div>
-    </div> -->
-
-    <SideBar />
+<template >
+    <SideBar data-intro="La barra de tareas te permite navegar por las opciones que tienes" />
     <div :style="{ 'margin-left': sidebarWidth }">
-      <div class="container-fluid custom">
-      <NavBar/>
-      <router-view />
+      <div class="container-fluid custom" v-bind:style="styleObject">
+      <NavBar />
+      <div class="d-flex justify-content-end" data-intro="Puedes cambiar los colores de la web según tu preferencia">
+        <input type="color" class="form-control form-control-color" id="exampleColorInput" v-model="styleObject.background" title="Choose your color">
+        <input type="color" class="form-control form-control-color" id="exampleColorInput" v-model="styleObject.color" title="Choose your color">
+      </div>
+      <router-view data-intro="Acá podras observar el contenido de tus cursos"  />
       </div>
     </div>
 
 </template>
 
 <script>
-
+import "intro.js/minified/introjs.min.css";
 import SideBar from '@/components/Navs/SideBar.v1/SideBar.vue' // Navs/SideBar.v1/SideBar.vue
 import NavBar from '@/components/Navs/NavBar/NavBar.vue'
 import { sidebarWidth } from '@/components/Navs/SideBar.v1/state'
@@ -34,6 +27,23 @@ export default {
   },
   setup() {
     return { sidebarWidth }
+  },
+  data(){
+    return{
+      styleObject: {
+        background: '#ffffff',
+        color:'#000000'
+      }
+    }
+  },
+  
+  mounted() {
+    let sesiones = localStorage.getItem("sesiones")
+    if(sesiones==1){
+      const introJS = require('intro.js');
+      introJS.introJs().start();
+      localStorage.removeItem("sesiones")
+    }
   }
 }
 </script>
