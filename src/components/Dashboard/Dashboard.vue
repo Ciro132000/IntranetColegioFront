@@ -24,6 +24,7 @@ export default {
   data(){
     return{
       rol_user:localStorage.getItem('rol_user'),
+      id_user:localStorage.getItem('id_usuario'),
       dataUser:[]
     }
   },
@@ -32,10 +33,19 @@ export default {
   // },
   methods:{
       async traerInfo(){
-        
-        await this.axios.get(`courses/search?idAula=${localStorage.getItem('idAula')}`).then((res)=>{
-            this.dataUser=res.data.data
-        })
+        switch (this.rol_user) {
+          case '2':
+            await this.axios.get(`teachers/sections?idDocente=${this.id_user}`).then((res)=>{
+              this.dataUser=res.data.data
+            })
+            break;
+          case '3':
+            await this.axios.get(`courses/search?idAula=${localStorage.getItem('idAula')}`).then((res)=>{
+              this.dataUser=res.data.data
+            })
+            break;
+        }  
+
       }
   },
   created(){

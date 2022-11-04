@@ -7,7 +7,7 @@ import Estudiantes from '../views/Estudiantes.vue'
 import Secciones from '../views/Secciones.vue'
 import Login from '../views/auth/Login.vue'
 import Horario from '../views/Horario.vue'
-import Curso from '../views/Cursos.vue'
+//import Curso from '../views/Cursos.vue'
 import Historial from '../views/Historial.vue'
 import Foros from '../components/Foros'
 import Evaluaciones from '../components/Evaluaciones'
@@ -59,7 +59,7 @@ const routes = [
       {path: 'horario', component: Horario, name: 'horarioClases' },
       {path: 'horario/:idAula', component: Horario, name: 'horario'},
       {path: 'horario/:idAula/:idSeccion', component: Horario, name: 'asignarHorario'},
-      {path: 'cursos', component: Curso, name: 'cursos' },
+      //{path: 'cursos', component: Curso, name: 'cursos' },
       {path: 'historial', component: Historial, name: 'historial' },
 
       {path: 'edit/perfil', component: Perfil, name: 'perfiluser' }

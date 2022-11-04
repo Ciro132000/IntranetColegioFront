@@ -85,10 +85,6 @@ export default {
   },
   created(){
       this.traerInfo()
-  },
-  mounted() {
-    const introJS = require('intro.js');
-    introJS.introJs().start();
   }
 }
 </script>
