@@ -2,6 +2,8 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { collapsed } from './state'
+import Cursos from '../../courses'
+
 export default {
   props: {
     to: { type: String, required: true },
@@ -11,13 +13,16 @@ export default {
     const route = useRoute()
     const isActive = computed(() => route.path === props.to)
     return { isActive, collapsed }
+  },
+  components:{
+      Cursos
   }
 }
 </script>
 
 <template>
-
-  <router-link :to="{name:to}" class="link" :class="{ active: $route.name === to, collap: collapsed }"> 
+<div>
+  <router-link v-if="to!='none'" :to="{name:to}" class="link" :class="{ active: $route.name === to, collap: collapsed }"> 
     <i class="icon" :class="icon" />
     <transition name="fade">
       <span v-if="!collapsed">
@@ -25,6 +30,20 @@ export default {
       </span>
     </transition>
   </router-link>
+  <div v-else class="dropend">
+    <a class="link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" :class="{ active: $route.name === to, collap: collapsed }">
+      <i class="icon" :class="icon" />
+      <transition name="fade">
+        <span v-if="!collapsed">
+          <slot />
+        </span>
+      </transition>
+    </a>
+    <div class="dropdown-menu">
+      <Cursos/>
+    </div>
+  </div>
+</div>
 </template>
 
 <style scoped>
@@ -64,5 +83,9 @@ export default {
 }
 .collap .icon{
   width: 55px !important;
+}
+.dropdown-menu{
+  padding: 1rem 0px;
+  background: rgba(195, 195, 195, 0.527);
 }
 </style>
