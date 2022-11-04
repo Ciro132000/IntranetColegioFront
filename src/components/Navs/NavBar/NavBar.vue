@@ -1,14 +1,14 @@
 <template>
   <nav class="navbar navbar-light bg-light">
   <div class="container-fluid justify-content-between">
-    <div class="perfil">
+    <div class="perfil" data-intro="Esta opción te permite editar tu perfil">
       <router-link :to="{name:'perfiluser'}"> 
         <img :src="img" class="img">
           {{ nombre }} {{ apellido }}
       </router-link>
     </div>
     <div class="d-flex">
-      <div class="dropdown">
+      <div class="dropdown" data-intro="Puedes verificar tus notificaciones">
         <i class="fas fa-bell alert" data-bs-toggle="dropdown">
           <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
           <span class="visually-hidden">New alerts</span>
@@ -52,7 +52,8 @@ export default {
   },
   components:{
     Notificaciones
-  }
+  },
+ 
 }
 </script>
 

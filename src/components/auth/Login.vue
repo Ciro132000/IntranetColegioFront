@@ -63,6 +63,7 @@ export default {
             localStorage.setItem("imagen",res.data.data.perfil.img)
             localStorage.setItem("notificacion",res.data.data.perfil.isNotificacion)
             localStorage.setItem("perfil",res.data.data.perfil.id)
+            localStorage.setItem("sesiones",res.data.data.sesiones)
             
             if(rol===3){
                 localStorage.setItem("idAula", res.data.data.dataUser.idAula)
@@ -76,9 +77,7 @@ export default {
                     this.alert = false
                 }, "3000")
                 console.log(error.response.status)
-            });
-
-            
+            });          
         }
     }
 }

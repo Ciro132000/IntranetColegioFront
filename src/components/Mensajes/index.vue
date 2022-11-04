@@ -2,8 +2,8 @@
     <div class="container">
         <h1 class="text-center my-3">Chat de comunicación</h1>
         <div class="row">
-            <div class="col-2 chats">
-                <h3>Docentes</h3>
+            <div class="col-2 chats" >
+                <h3>Contactos</h3>
                 <div class="item-card d-flex" v-for="item in chats" :key="item.index" @click="traerMensajes(item.idUsuario, item.img)">
                     <img :src="item.img" class="img-fluid rounded-circle" alt="...">
                     <h6>{{ item.nombre }} {{ item.apellido}}</h6>
@@ -85,6 +85,10 @@ export default {
   },
   created(){
       this.traerInfo()
+  },
+  mounted() {
+    const introJS = require('intro.js');
+    introJS.introJs().start();
   }
 }
 </script>
