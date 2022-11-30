@@ -26,4 +26,10 @@ export default {
   }
 
   .introjs-skipbutton{} */
+  body {
+    font-family: 'Roboto', sans-serif;
+  }
+  span{
+    font-family: 'Roboto', sans-serif;
+  }
 </style>
