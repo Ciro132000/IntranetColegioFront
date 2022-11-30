@@ -1,10 +1,10 @@
 <template>
   <div class="cotainer-fluid px-5">
     <div class="row mt-5">
-      <div class="col-md-3">
+      <div class="col-md-2">
         <Menu/>
       </div>
-      <div class="col-md-9">
+      <div class="col-md-10">
         <div v-if="rol_user==2">
           <DocenteForo />
         </div>
