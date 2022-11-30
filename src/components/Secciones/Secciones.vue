@@ -5,10 +5,10 @@
 
   <div class="cotainer-fluid px-5" v-else>
     <div class="row mt-5">
-      <div class="col-md-3">
+      <div class="col-md-2">
         <Menu/>
       </div>
-      <div class="col-md-9">
+      <div class="col-md-10">
         <div>
           <Estudiante />
         </div>

@@ -1,9 +1,9 @@
 <template>
-        <ul class="list-group ">
-          <li class="list-group-item d-flex justify-content-between align-items-start" v-for="item in itemsMenu" :key="item.index">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item d-flex justify-content-between align-items-start " v-for="item in itemsMenu" :key="item.index" :class="{ actived: $route.name == item.path }">
             <div class="ms-2 me-auto">
               <div class="fw-bold">
-                <router-link :to="{name:item.path, params:{idSeccion:$route.params.idSeccion}  }"> 
+                <router-link :to="{name:item.path, params:{idSeccion:$route.params.idSeccion} }" > 
                 {{ item.name }}
                 </router-link>  
               </div>
@@ -37,6 +37,16 @@ export default {
 
 <style scoped>
 
+  a{
+    color: rgba(126, 126, 126, 0.609);
+  }
 
+  .actived{
+    border-left: 4px rgb(0,142,255) solid;;
+  }
+
+  .actived a{
+    color: rgb(0,142,255) !important;
+  }
 
 </style>

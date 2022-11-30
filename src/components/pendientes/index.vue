@@ -1,10 +1,10 @@
 <template>
   <div class="cotainer-fluid px-5">
     <div class="row mt-5">
-      <div class="col-md-3">
+      <div class="col-md-2">
         <Menu/>
       </div>
-      <div class="col-md-9">
+      <div class="col-md-10">
         <h2 class="text-center">Actividades Pendientes</h2>
         <h6 v-if="actividades.length == 0" class="text-center mt-5">No se encontraron actividades pendientes</h6>
         <div>
