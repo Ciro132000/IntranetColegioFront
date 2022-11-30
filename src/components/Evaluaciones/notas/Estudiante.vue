@@ -4,7 +4,7 @@
           <li class="list-group-item d-flex justify-content-between" v-for="evaluacion in listaEvaluaciones" :key="evaluacion.index">
             <div>
               <h5>{{ evaluacion.titulo }}</h5>
-              <samp>Tipo de evaluación: {{ evaluacion.idTipo == 1 ? 'Examen':'Tarea' }}</samp>
+              <span>Tipo de evaluación: {{ evaluacion.idTipo == 1 ? 'Examen':'Tarea' }}</span>
             </div>
 
             <div class="d-flex flex-column ">
