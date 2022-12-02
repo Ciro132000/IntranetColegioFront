@@ -11,7 +11,7 @@ import introJS from 'intro.js';
 
 const token = localStorage.getItem('access_token');
 
-axios.defaults.baseURL = 'https://intranetapi.herokuapp.com/api'
+axios.defaults.baseURL = 'https://intranet-colegio.onrender.com/api'
 //axios.defaults.baseURL = 'http://localhost:3000/api'
 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 axios.defaults.headers.post['Accept'] = 'application/json';
